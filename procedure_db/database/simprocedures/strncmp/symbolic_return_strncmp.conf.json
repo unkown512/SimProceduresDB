@@ -1,0 +1,9 @@
+{
+    "name": "symbolic_return_strnmcp",
+    "arch": "x86",
+    "file_type": "elf",
+    "os_version": "linux",
+    "contains_bytes": "",
+    "models_os": "0",
+    "models_libs": "1"
+}

@@ -1,0 +1,42 @@
+.label, label.inline {
+    display: inline-block;
+    width: 150px;
+}
+
+// Non relevant styles
+* {
+  box-sizing: border-box;
+}
+
+p {
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #6439a9;
+}
+
+.container {
+  padding: 100px 30px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+// Relevant styles
+.image-stack {
+  position: relative;
+  width: 100%;
+}
+
+.image-stack__item--bottom {
+  position: absolute;
+  right: 25px;
+  top: 75px;
+  width: 80%; // this is an arbitrary width, depends on the design
+  z-index: -1;
+}
+
+.image-stack__item--top {
+  padding-top: 20px; // arbitrary value
+  padding-right: 20%; // arbitrary value
+  width: 80%; // arbitrary value
+}

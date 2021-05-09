@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>PokéRando</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/multiselect.css')}}">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/navbar.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Font Awesome JS -->
+  <script rel="stylesheet" type="application/javascript" href="{{url_for('static', filename='js/solid.js')}}"></script>
+  <script rel="stylesheet" type="application/javascript" href="{{url_for('static', filename='js/fontawesome.js')}}"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<!-- Start of HTML code here -->
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>SimProcedure Database</h3>
+      </div>
+      <ul class="list-unstyled components">
+        <p>Menu Items</p>
+        <li class="active">
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Features</a>
+          <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li>
+              <a href="#">Dataset</a>
+            </li>
+            <li>
+              <a href="#">Evaluation</a>
+            </li>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+      </ul>
+      <p style='margin-left:5px;'>Powered by <a href='https://getbootstrap.com/' style='color:blue'>Bootstrap</a></p>
+    </nav>
+    <div class="container" style="margin-top:15px;">
+      <h3 style="text-align:center;"> SimProcedure DB (v1.0) </h3>
+      <div class="search_filter" style="margin-top:50px;">
+        <label class="label" for="pokemon_name">Architecure:</label>
+        <select id='arch' name='arch' multiple data-live-search="true">
+          <option value=''></option>
+          {% for name in select_options['arch'] %}
+            <option value='{{name}}'>{{name}}</option>
+          {% endfor %}
+        </select>
+        </br>
+        <label class="label" for="file_type">File Type:</label>
+        <select id='file_type' multiple data-live-search="true">
+          {% for type in select_options['file_type'] %}
+            <option value='{{type}}'>{{type}}</option>
+          {% endfor %}
+        </select>
+        </br>
+        <label class="label" for="os_version">Operating System:</label>
+        <select id='os_version' multiple data-live-search="true">
+          {% for version in select_options['os'] %}
+            <option value='{{version}}'>{{version}}</option>
+          {% endfor %}
+        </select>
+        <br>
+        <label class="label" for="intended_for">Intended For:</label>
+        <select id='intended_for' multiple 5data-live-search="true">
+          {% for method in select_options['intended_for'] %}
+            <option value='{{method}}'>{{method}}</option>
+          {% endfor %}
+        </select>
+        </br>
+        <label class="label" for="contains_bytes">Contains Bytes:</label>
+        <input type="text" id="contains_bytes" name="constains_bytes">
+        </br>
+        <label class="label" for="models_os">Models OS</label>
+        <input type="checkbox" id="models_os" name="model_os">
+        </br>
+        <label class="label" for="models_libs">Models Libs</label>
+        <input type="checkbox" id="models_libs" name="models_libs">
+        </br>
+        <button type="submit" class="btn btn-primary" id="web_search" name="web_search">Search</button>
+      </div>
+      <div class="search_results">
+        <table id="sim_table" name="sim_table" class="display responsive nowrap" cellspacing="0"></table>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var search_results = {{search_results|safe}}
+</script>
+<!-- Jquery CDN https://code.jquery.com/ -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper.JS -->
+<script rel="stylesheet" type="application/javascript" src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+
+<!-- Datatables Css -->
+<script rel="stylesheet" type="application/javascript" src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script rel="stylesheet" type="application/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+<script rel="stylesheet" type="application/javascript" src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+<script type="application/javascript" src="{{url_for('static', filename='js/multiselect.js')}}"></script>
+
+<!-- Custom JS -->
+<script type="application/javascript" src="{{url_for('static', filename='js/dashboard.js')}}"></script>
+
+</html>
