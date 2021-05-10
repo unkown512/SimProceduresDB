@@ -17,6 +17,7 @@ class PathsToTarget():
             self.entry_point = main_symbol.rebased_addr
         
         self.cfg = self.proj.analyses.CFGEmulated(starts=[self.entry_point])
+        self.main_node = None
 
     def _add_new_path(self, new_path):
         self.paths_to_target.append(new_path)
@@ -25,19 +26,24 @@ class PathsToTarget():
     def get_target_node(self):
 
         # TODO: Check if target node is simprocedure
+        i = 0
         for node in self.cfg.graph.nodes():
+            if i == 0:
+                self.main_node = node
             if node.block is None:
                 continue
             if int(self.target_addr, 16) in node.block.instruction_addrs:
                 self.target_node = node
                 self.paths_to_target.append({'nodes': [node]})
                 return True
+            i += 1
 
         return False
 
     def recursive_path_finder(self, index):
         preds = self.paths_to_target[index]['nodes'][-1].predecessors
         if len(preds) == 0:
+            print("MAIN FOUND")
             return 0 
 
         new_path = copy.deepcopy(self.paths_to_target[index])
@@ -46,5 +52,6 @@ class PathsToTarget():
             new_path['nodes'].append(pred)
             new_index = self._add_new_path(new_path)
             self.recursive_path_finder(new_index)
-        return self.recursive_path_finder(index) 
+        print("index", index)
+        return self.recursive_path_finder(index)
 

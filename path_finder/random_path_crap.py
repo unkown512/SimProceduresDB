@@ -2,7 +2,7 @@ import angr
 from angrutils import *
 import copy
 
-proj = angr.Project('toy1', arch='X86', auto_load_libs=False)
+proj = angr.Project('/home/djbey/angr_extended/SimProceduresDB/tests/toy1', arch='X86', auto_load_libs=False)
 entry_point = proj.entry
 
 main_symbol = proj.loader.main_object.get_symbol("main")
@@ -11,6 +11,8 @@ if main_symbol:
 
 cfg = proj.analyses.CFGEmulated(starts=[entry_point])
 
+plot_cfg(cfg, "dynamic", asminst=False, remove_imports=True, remove_path_terminator=True)
+quit()
 call_list = {} 
 #print(dir(cfg.kb.callgraph))
 #print(dir(cfg.kb.xrefs))
@@ -139,4 +141,3 @@ for node in cfg.graph.nodes():
     #print(node.block.disassembly)
 '''
 print(paths_to_goal)
-plot_cfg(cfg, "dynamic", asminst=True, remove_imports=True, remove_path_terminator=True)

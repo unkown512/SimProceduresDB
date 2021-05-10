@@ -10,9 +10,23 @@ if PF.get_target_node():
     print(f"Total paths found: {len(PF.paths_to_target)}")
 PS = PathStats(PF.paths_to_target, PF.proj)
 
+
+
 print("Shortest Path")
-print(PS.shortest_path())
+print(PS.shortest_path_by_edges())
 
+print("path stats")
+#print(PS.calc_sim_frequency())
+#print(PS.calc_instruction_freq())
+print(PS.calc_symbolic_score())
+quit()
+print(PS.paths[0]['nodes'])
+print(PS.paths['sim_stats'])
 
-
+for path in PS.paths:
+    print("***********************")
+    print(len(path['nodes']))
+    print(path['nodes'])
+    #print(path.keys())
+    #print(path['sim_count'])
 
